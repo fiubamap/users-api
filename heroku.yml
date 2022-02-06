@@ -5,7 +5,3 @@ setup:
 build:
   docker:
     web: Dockerfile
-  config:
-    NODE_ENV: production
-run:
-  web: python3 -m flask run
