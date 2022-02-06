@@ -1,5 +1,4 @@
 setup:
-  addons:
   config:
     APP_NAME: users-api
 build:
