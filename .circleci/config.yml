@@ -38,23 +38,23 @@ jobs:
           name: Run tests
           # This assumes pytest is installed via the install-package step above
           command: pytest
-    deploy:
-      executor: heroku/default
-      steps:
-        - checkout
-        - run:
-            name: Storing previous commit
-            command: |
-              git rev-parse HEAD > ./commit.txt
-        - heroku/install
-        - setup_remote_docker:
-            version: 18.06.0-ce
-        - run:
-            name: Pushing to heroku registry
-            command: |
-              heroku container:login
-              heroku container:push web --arg NODE_ENV=production -a $HEROKU_APP_NAME
-              heroku container:release web -a $HEROKU_APP_NAME
+  deploy:
+    executor: heroku/default
+    steps:
+      - checkout
+      - run:
+          name: Storing previous commit
+          command: |
+            git rev-parse HEAD > ./commit.txt
+      - heroku/install
+      - setup_remote_docker:
+          version: 18.06.0-ce
+      - run:
+          name: Pushing to heroku registry
+          command: |
+            heroku container:login
+            heroku container:push web --arg NODE_ENV=production -a $HEROKU_APP_NAME
+            heroku container:release web -a $HEROKU_APP_NAME
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
