@@ -1,0 +1,11 @@
+setup:
+  addons:
+  config:
+    APP_NAME: users-api
+build:
+  docker:
+    web: Dockerfile
+  config:
+    NODE_ENV: production
+run:
+  web: python3 -m flask run
